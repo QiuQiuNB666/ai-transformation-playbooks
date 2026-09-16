@@ -1,0 +1,320 @@
+<title>诚一模板</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;700&display=swap">
+<style>
+/* ============ 诚一设计 token · 改内容不改这里 ============ */
+:root{
+  --bg:#F8F6FC; --surf:#FFFFFF; --panel:#EFEBF9; --line:#DCD6EE;
+  --ink:#1E1B4B; --ink2:#44406C; --muted:#6E6A92;
+  --s1:#4C1D95; --s2:#7C3AED; --s3:#A78BFA;
+  --acc:#5B21B6; --neg:#B4483C; --grid:#E7E2F4;
+  --warn-bg:#FDF1DA; --warn-fg:#7A4405; --warn-line:#EAC377;
+  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141127; --surf:#1C1837; --panel:#231E44; --line:#38325F;
+  --ink:#EDEAF9; --ink2:#CBC6E6; --muted:#9C97C2;
+  --s1:#C4B5FD; --s2:#8B5CF6; --s3:#5B21B6;
+  --acc:#A78BFA; --neg:#E08A7D; --grid:#2B2652;
+  --warn-bg:#3A2A0F; --warn-fg:#F3CE83; --warn-line:#6A4914;
+}}
+:root[data-theme="dark"]{
+  --bg:#141127; --surf:#1C1837; --panel:#231E44; --line:#38325F;
+  --ink:#EDEAF9; --ink2:#CBC6E6; --muted:#9C97C2;
+  --s1:#C4B5FD; --s2:#8B5CF6; --s3:#5B21B6;
+  --acc:#A78BFA; --neg:#E08A7D; --grid:#2B2652;
+  --warn-bg:#3A2A0F; --warn-fg:#F3CE83; --warn-line:#6A4914;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:30px 20px 70px}
+h1{font-family:var(--serif);font-size:clamp(22px,3.2vw,29px);margin:0 0 5px;line-height:1.3;text-wrap:balance}
+h2{font-family:var(--serif);font-size:17.5px;margin:32px 0 9px;padding-top:18px;border-top:1px solid var(--line)}
+h3{font-size:14.5px;margin:18px 0 6px}
+.sub{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+p{margin:0 0 9px;max-width:68ch}
+.note{font-size:13px;color:var(--ink2);margin-top:8px}
+a{color:var(--acc)}
+
+/* 引用块：一句话结论 */
+.thesis{background:var(--panel);border-left:4px solid var(--acc);border-radius:0 6px 6px 0;padding:11px 15px;margin:13px 0 0}
+.thesis b{color:var(--acc)}
+/* 警示块：截止日、红线 */
+.cd{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:6px;padding:11px 15px;margin:13px 0 0;color:var(--warn-fg)}
+.cd .h{font-weight:700;font-size:14.5px}
+/* 卡片 */
+.card{background:var(--surf);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:11px 0 0}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:11px 0 0}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border-bottom:0}
+.kv span{color:var(--muted)}
+.kv b{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.kv b.dn{color:var(--neg)}
+/* 图表容器 */
+.fig{background:var(--surf);border:1px solid var(--line);border-radius:6px;padding:13px 15px 7px;margin:11px 0 0}
+.fig .t{font-size:14px;font-weight:600;margin:0 0 2px}
+.fig .s{font-size:12px;color:var(--muted);margin:0 0 9px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:11px 0 0}
+.two .fig{margin:0}
+svg{width:100%;height:auto;display:block;font-family:var(--sans);font-variant-numeric:tabular-nums}
+svg text{fill:var(--ink2);font-size:12px}
+svg .lab{fill:var(--ink);font-weight:500}
+svg .mut{fill:var(--muted);font-size:11px}
+svg .grid{stroke:var(--grid);stroke-width:1}
+svg .onbar{fill:#fff;font-size:11px;font-weight:700}
+svg .onbar.dk{fill:#1E1B4B}
+:root[data-theme="dark"] svg .onbar.dk{fill:#141127}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) svg .onbar.dk{fill:#141127}}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin:0 0 8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+details{margin:8px 0 0;font-size:13px}
+summary{cursor:pointer;color:var(--acc);font-size:12px}
+/* 表格 */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px;margin:11px 0 0;background:var(--surf)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+th{background:var(--panel);text-align:left;font-weight:600;padding:7px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink2)}
+tr:last-child td{border-bottom:0}
+td:first-child{color:var(--ink);font-weight:500}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.dn{color:var(--neg);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* pill 与点阵 */
+.pill{display:inline-block;padding:1px 7px;border-radius:3px;font-size:11.5px;font-weight:600;white-space:nowrap}
+.p1{background:var(--s1);color:#fff}
+.p2{background:var(--s2);color:#fff}
+.p3{background:var(--s3);color:#1E1B4B}
+.pn{background:var(--neg);color:#fff}
+.pg{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
+.dots{display:inline-flex;gap:3px;vertical-align:-1px}
+.dots i{width:9px;height:9px;border-radius:2px;background:var(--line);display:inline-block}
+.dots i.on{background:var(--s1)}
+ul.plain{margin:8px 0 0;padding-left:1.3em;font-size:13.5px}
+ul.plain li{margin:4px 0;color:var(--ink2)}
+.foot{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media (max-width:700px){.g2,.g3,.two{grid-template-columns:1fr}}
+
+/* ============ 打印：A4。苹方不可嵌入 PDF，故换本地宋体 ============ */
+@media print{
+  :root{
+    --bg:#fff; --surf:#fff; --panel:#F2EEFB; --line:#C9C2E0;
+    --ink:#17143D; --ink2:#3A3660; --muted:#5E5A80; --neg:#A8402F; --grid:#DFD9F0;
+    --warn-bg:#FCF3E2; --warn-fg:#6B3B04; --warn-line:#D9B66A;
+    --sans:"Songti SC","STSong","PingFang SC",serif;
+    --serif:"Songti SC","STSong","SimSun",serif;
+  }
+  @page{ size:A4; margin:13mm 12mm; }
+  html,body{background:#fff !important}
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important }
+  body{font-size:10pt;line-height:1.55;font-family:var(--sans)}
+  h1,h2,h3,th,td:first-child,.pill,.thesis b,.cd .h,.fig .t,svg .lab,svg .onbar{font-weight:700}
+  h1,h2,h3{font-family:var(--serif)}
+  .wrap{max-width:none;padding:0}
+  h1{font-size:19pt} h2{font-size:13pt;margin:16pt 0 6pt;padding-top:8pt;break-after:avoid}
+  p,.note{font-size:9.5pt;max-width:none} .sub{font-size:8.5pt}
+  .fig,.cd,.thesis,.tw,.card,ul.plain{break-inside:avoid}
+  .fig{margin:6pt 0 0;padding:8pt 10pt 4pt}
+  .two,.g2,.g3{gap:8pt;margin:6pt 0 0}
+  table{font-size:8.5pt;min-width:0} th,td{padding:4pt 6pt}
+  svg text{font-size:8.5pt} svg .mut,svg .onbar{font-size:7.5pt}
+  .legend{font-size:8.5pt} .pill{font-size:8pt} ul.plain{font-size:9pt}
+  details{display:block} summary{display:none} details>*:not(summary){display:block !important}
+  .tw{overflow:visible}
+  .brk{break-before:page}          /* 加这个类可强制换页 */
+  .foot{margin-top:14pt;font-size:8pt}
+}
+</style>
+
+<div class="wrap">
+<h1>标题写在这里</h1>
+<div class="sub">日期 · 依据 · 口径说明</div>
+
+<div class="thesis"><b>一句话结论放这里。</b><br>补充一句，说清这个结论的边界。</div>
+
+<div class="cd">
+<div class="h">警示块：用于截止日、硬止损、法律红线。</div>
+<div style="font-size:12.5px">正文一句话。</div>
+</div>
+
+<h2>组件示例</h2>
+
+<h3>三列卡片</h3>
+<div class="g3">
+  <div class="card"><h3 style="margin-top:0">卡片标题</h3>
+    <div class="kv"><span>指标</span><b>数值</b></div>
+    <div class="kv"><span>下降的指标</span><b class="dn">−28%</b></div>
+    <div class="kv"><span>判定</span><b>结论</b></div>
+  </div>
+  <div class="card"><h3 style="margin-top:0">卡片标题</h3>
+    <div class="kv"><span>指标</span><b>数值</b></div>
+    <div class="kv"><span>指标</span><b>数值</b></div>
+  </div>
+  <div class="card"><h3 style="margin-top:0">卡片标题</h3>
+    <div class="kv"><span>指标</span><b>数值</b></div>
+  </div>
+</div>
+
+<h3>表格：含 pill 与点阵强度</h3>
+<div class="tw"><table>
+  <tr><th>项目</th><th>强度</th><th>判定</th><th>说明</th></tr>
+  <tr><td>满格项</td><td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td><span class="pill p1">真</span></td><td>写出机制，不写口号</td></tr>
+  <tr><td>半格项</td><td><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></td><td><span class="pill p2">半真</span></td><td>条件成立时才算</td></tr>
+  <tr><td>一格项</td><td><span class="dots"><i class="on"></i><i></i><i></i></span></td><td><span class="pill p3">入场券</span></td><td>人人都有，不是差异</td></tr>
+  <tr><td>负向项</td><td><span class="dots"><i></i><i></i><i></i></span></td><td><span class="pill pn">风险</span></td><td>数字用 td.dn 标红</td></tr>
+  <tr><td>删除项</td><td><span class="dots"><i></i><i></i><i></i></span></td><td><span class="pill pg">删除</span></td><td>写明删除理由</td></tr>
+</table></div>
+
+<h3>区间条：价格带、工时范围</h3>
+<div class="fig">
+  <p class="t">图表标题</p>
+  <p class="s">单位。口径说明</p>
+  <svg viewBox="0 0 800 150" role="img" aria-label="三档区间对比"><g id="c1"></g></svg>
+  <details><summary>表格视图</summary>
+    <div class="tw"><table>
+      <tr><th>档位</th><th>区间</th></tr>
+      <tr><td>低档</td><td class="n">100–200</td></tr>
+      <tr><td>中档</td><td class="n">300–500</td></tr>
+      <tr><td>高档</td><td class="n">500–1,200</td></tr>
+    </table></div>
+  </details>
+</div>
+
+<h3>堆叠条：构成或分级占比</h3>
+<div class="fig">
+  <p class="t">图表标题</p>
+  <p class="s">横轴同刻度，便于跨行比较</p>
+  <div class="legend"><span><i style="background:var(--s1)"></i>该做</span><span><i style="background:var(--s2)"></i>值得试</span><span><i style="background:var(--s3)"></i>劝退</span></div>
+  <svg viewBox="0 0 800 130" role="img" aria-label="分组裁决堆叠条"><g id="c2"></g></svg>
+</div>
+
+<h3>两图并排：条形与折线</h3>
+<div class="two">
+  <div class="fig">
+    <p class="t">条形</p>
+    <p class="s">单系列不用图例</p>
+    <svg viewBox="0 0 400 175" role="img" aria-label="三年数值条形"><g id="c3"></g></svg>
+  </div>
+  <div class="fig">
+    <p class="t">折线含参考带</p>
+    <p class="s">下降用 neg 色</p>
+    <svg viewBox="0 0 400 175" role="img" aria-label="三年下降趋势"><g id="c4"></g></svg>
+  </div>
+</div>
+
+<h3>时间轴</h3>
+<div class="fig">
+  <svg viewBox="0 0 800 110" role="img" aria-label="四阶段时间轴与红线"><g id="c5"></g></svg>
+</div>
+
+<h3>列表</h3>
+<ul class="plain">
+<li>一行一条，每条一个判断。</li>
+<li>需要标注口径的写在句末，用 <span class="sub">这种弱化样式</span>。</li>
+</ul>
+
+<div class="foot">口径说明：标「服务商自述」「媒体转述」者未经第三方验证，不得作为承诺或 KPI 目标值。</div>
+</div>
+
+<script>
+/* ============ 图表工具函数 · 直接复用 ============ */
+(function(){
+var NS='http://www.w3.org/2000/svg';
+function E(t,a,x){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
+function T(n,s){n.appendChild(E('title',{},s));return n;}
+/* 打印与 ?print=1 时展开所有 details */
+if(location.search.indexOf('print')>=0){document.querySelectorAll('details').forEach(function(d){d.open=true;});}
+window.addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true;});});
+
+/* 区间条 */
+(function(){
+  var g=document.getElementById('c1'), L=110, R=700, max=1200, t=10, rh=35;
+  var rows=[['低档',100,200,'s2',''],['中档',300,500,'s1','← 重点档'],['高档',500,1200,'s2','']];
+  [0,300,600,900,1200].forEach(function(v){
+    var x=L+(R-L)*v/max;
+    g.appendChild(E('line',{x1:x,x2:x,y1:t,y2:t+rh*rows.length,'class':'grid'}));
+    g.appendChild(E('text',{x:x,y:t+rh*rows.length+16,'text-anchor':'middle','class':'mut'},v));
+  });
+  rows.forEach(function(r,i){
+    var y=t+i*rh, x1=L+(R-L)*r[1]/max, x2=L+(R-L)*r[2]/max;
+    g.appendChild(E('text',{x:L-10,y:y+22,'text-anchor':'end','class':'lab'},r[0]));
+    g.appendChild(T(E('rect',{x:x1,y:y+8,width:Math.max(x2-x1,3),height:20,rx:3,fill:'var(--'+r[3]+')'}),r[0]+' '+r[1]+'–'+r[2]));
+    g.appendChild(E('text',{x:x2+8,y:y+23,'class':'lab'},r[1]+'–'+r[2]));
+    if(r[4]) g.appendChild(E('text',{x:x2+72,y:y+23,'class':'mut'},r[4]));
+  });
+})();
+
+/* 堆叠条 */
+(function(){
+  var g=document.getElementById('c2'), L=140, W=480, rh=33, t=8, scale=12;
+  var d=[['分组一',3,5,3],['分组二',6,3,3],['分组三',2,4,2]];
+  d.forEach(function(r,i){
+    var y=t+i*rh, n=r[1]+r[2]+r[3], x=L;
+    g.appendChild(E('text',{x:L-10,y:y+20,'text-anchor':'end','class':'lab'},r[0]));
+    [['s1','该做',0],['s2','值得试',0],['s3','劝退',1]].forEach(function(c,j){
+      var v=r[j+1]; if(!v) return;
+      var w=W*v/scale-2;
+      g.appendChild(T(E('rect',{x:x,y:y+5,width:Math.max(w,0),height:22,rx:3,fill:'var(--'+c[0]+')'}),r[0]+' · '+c[1]+' '+v));
+      if(w>16) g.appendChild(E('text',{x:x+w/2,y:y+20,'text-anchor':'middle','class':c[2]?'onbar dk':'onbar'},v));
+      x+=w+2;
+    });
+    g.appendChild(E('text',{x:L+W+12,y:y+20,'class':'mut'},'共 '+n));
+  });
+})();
+
+/* 条形 */
+(function(){
+  var g=document.getElementById('c3'), L=40, R=376, t=14, b=132, max=3;
+  var d=[['2024',2.8],['2025',2.3],['2026',2.7]];
+  [0,1,2,3].forEach(function(v){
+    var y=b-(b-t)*v/max;
+    g.appendChild(E('line',{x1:L,x2:R,y1:y,y2:y,'class':'grid'}));
+    g.appendChild(E('text',{x:L-6,y:y+4,'text-anchor':'end','class':'mut'},v));
+  });
+  d.forEach(function(p,i){
+    var x=L+32+i*104, h=(b-t)*p[1]/max, bw=62;
+    g.appendChild(T(E('rect',{x:x,y:b-h,width:bw,height:h,rx:3,fill:'var(--s1)'}),p[0]+' '+p[1]));
+    g.appendChild(E('text',{x:x+bw/2,y:b-h-6,'text-anchor':'middle','class':'lab'},p[1]));
+    g.appendChild(E('text',{x:x+bw/2,y:b+16,'text-anchor':'middle','class':'mut'},p[0]));
+  });
+  g.appendChild(E('text',{x:L,y:166,'class':'mut'},'单位与口径写在这里'));
+})();
+
+/* 折线含参考带 */
+(function(){
+  var g=document.getElementById('c4'), L=46, R=376, t=14, b=132, lo=55, hi=90;
+  var d=[['2024',85],['2025',83],['2026',80]];
+  function ys(v){return b-(b-t)*(v-lo)/(hi-lo);}
+  [60,70,80,90].forEach(function(v){
+    g.appendChild(E('line',{x1:L,x2:R,y1:ys(v),y2:ys(v),'class':'grid'}));
+    g.appendChild(E('text',{x:L-6,y:ys(v)+4,'text-anchor':'end','class':'mut'},v+'%'));
+  });
+  g.appendChild(E('rect',{x:L,y:ys(70),width:R-L,height:ys(60)-ys(70),fill:'var(--s3)',opacity:.2}));
+  g.appendChild(E('text',{x:R-4,y:ys(64)+4,'text-anchor':'end','class':'mut'},'参考区间'));
+  var pts=d.map(function(p,i){return [L+34+i*98, ys(p[1])];});
+  g.appendChild(E('path',{d:pts.map(function(p,i){return (i?'L':'M')+p[0]+','+p[1];}).join(' '),fill:'none',stroke:'var(--neg)','stroke-width':2}));
+  d.forEach(function(p,i){
+    g.appendChild(T(E('circle',{cx:pts[i][0],cy:pts[i][1],r:5,fill:'var(--neg)',stroke:'var(--surf)','stroke-width':2}),p[0]+' '+p[1]+'%'));
+    g.appendChild(E('text',{x:pts[i][0],y:pts[i][1]-11,'text-anchor':'middle','class':'lab'},p[1]+'%'));
+    g.appendChild(E('text',{x:pts[i][0],y:b+16,'text-anchor':'middle','class':'mut'},p[0]));
+  });
+  g.appendChild(E('text',{x:L-6,y:166,'class':'mut'},'口径说明'));
+})();
+
+/* 时间轴 */
+(function(){
+  var g=document.getElementById('c5'), L=10, R=790, y=40;
+  var ph=[['阶段一','起 → 止',0,.25],['阶段二','起 → 止',.25,.5],['阶段三','起 → 止',.5,.75],['阶段四','起 → 止',.75,1]];
+  var cols=['s1','s2','s3','s3'];
+  ph.forEach(function(p,i){
+    var x1=L+(R-L)*p[2], x2=L+(R-L)*p[3];
+    g.appendChild(T(E('rect',{x:x1+(i?3:0),y:y,width:x2-x1-3,height:26,rx:3,fill:'var(--'+cols[i]+')',opacity:i===3?.55:1}),p[0]+' '+p[1]));
+    g.appendChild(E('text',{x:x1+10,y:y+18,'class':i>1?'onbar dk':'onbar'},p[0]));
+    g.appendChild(E('text',{x:x1+(i?3:0),y:y-8,'class':'mut'},p[1]));
+  });
+  var xs=L+(R-L)*0.12;
+  g.appendChild(E('line',{x1:xs,x2:xs,y1:y-4,y2:y+34,stroke:'var(--neg)','stroke-width':2}));
+  g.appendChild(E('text',{x:xs+6,y:y+48,fill:'var(--neg)','font-size':11,'font-weight':700},'红线：说明写这里'));
+})();
+})();
+</script>
